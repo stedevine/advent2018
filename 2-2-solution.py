@@ -1,25 +1,36 @@
-def add(key, map):
-    if key in map:
-        map[key] = 1 + map[key]
-    else:
-        map[key] = 1
+import itertools
 
+def get_common_letters(lines):
+    # The input has exactly one pair of lines
+    # with exactly 1 letter difference
+    # All the lines are the same length
+    result = ""
+    for a,b in itertools.combinations(lines,2):
+        diff = 0
+        # Find the pair for which the difference is one
+        for i in range(len(a)):
+            if (a[i] != b[i]):
+                diff += 1
+            if (diff > 1):
+                break
+        if (diff == 1):
+            # Collect the letters the two lines have in common
+            for i in range(len(a)):
+                if (a[i] == b[i]):
+                    result += a[i]
+            return result
 
+# Test input
+print get_common_letters([
+"abcde",
+"fghij",
+"klmno",
+"pqrst",
+"fguij",
+"axcye",
+"wvxyz"])
+
+# Problem input
 with open('2-1-input.txt') as fp:
-    #lines = fp.readlines()
-    lines = [
-    "abcdef",
-    "bababc",
-    "abbcde",
-    "abcccd",
-    "aabcdd",
-    "abcdee",
-    "ababab"]
-    for line in lines:
-        map = {}
-        print line
-        for letter in line:
-            #print letter
-            add(letter,map)
-        for key in map:
-            print map[key]
+    lines = fp.readlines()
+    print get_common_letters(lines)
