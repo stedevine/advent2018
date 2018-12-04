@@ -7,7 +7,8 @@ with open('1-1-input.txt') as fp:
         for line in lines:
             current_frequency += int(line)
             if (current_frequency in frequencies):
-                print "first match " + str(current_frequency)
                 found_twice = True
                 break
             frequencies.add(current_frequency)
+
+print "first match " + str(current_frequency)
