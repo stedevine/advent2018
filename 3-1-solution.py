@@ -73,8 +73,6 @@ test_input = [
 
 apply_to_board(test_input, get_board(test_input))
 
-
-
 with open('3-1-input.txt') as fp:
     lines = fp.readlines()
     apply_to_board(lines, get_board(lines))
